@@ -13,3 +13,15 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Company {
+  id                  String @id @default(uuid())
+  name                String
+  title               String
+  type                String
+  location            String
+  about               String
+  salaryFrom          String
+  salaryTo            String
+  applicationDeadline String
+}

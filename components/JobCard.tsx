@@ -7,18 +7,17 @@ import { Building2, Layers, User } from 'lucide-react'
 import Image from 'next/image'
 
 type jobCardProp = {
- logo : string,
  jobTitle: string
 }
 
-const JobCard = ({logo, jobTitle}:jobCardProp) => {
+const JobCard = ({jobTitle}:jobCardProp) => {
  return (
   <Card className="w-[316px] h-[360px] rounded-[12px] shadow-md relative">
    <CardHeader className="flex gap-10 flex-row justify-between items-start">
     {/* Logo */}
     <div className='p-2 shadow-2xs bg-zinc-100 rounded-md'>
     <Image
-     src={logo} // Update this path to match your asset
+     src={'/swigge.svg'} // Update this path to match your asset
      alt='company logo'
      width={66}
      height={66}

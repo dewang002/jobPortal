@@ -1,15 +1,16 @@
 import { Dialog, DialogTrigger, DialogContent } from '@/components/ui/dialog'
-import React from 'react'
+import React, { useState } from 'react'
 import { Button } from './ui/button'
 import { DialogHeader } from './ui/dialog'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { companySchema } from '@/lib/zodSchemas'
+import { companySchema } from '@/lib/utils/zodSchemas'
 import { Form, FormControl, FormField, FormItem, FormLabel } from './ui/form'
 import { Input } from './ui/input'
-import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from './ui/select'
+import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from './ui/select'
 import { Textarea } from './ui/textarea'
+import { createCompany } from '@/app/actions/action'
 
 const FormBox = () => {
  const form = useForm<z.infer<typeof companySchema>>({
@@ -25,9 +26,22 @@ const FormBox = () => {
   }
  })
 
+ const [pending, setPending] = useState(false)
+ const onSubmit = async (data: z.infer<typeof companySchema>) => {
+  try {
+   setPending(true)
+   await createCompany(data)
+  } catch {
+   console.log("something went wrong")
+  } finally {
+   setPending(false)
+   form.reset()
+  }
+ }
+
  return (
   <Dialog >
-   <DialogTrigger>
+   <DialogTrigger asChild>
     <Button className="bg-purple-600 text-white hover:bg-purple-700 rounded-full px-6">
      Create Jobs
     </Button>
@@ -39,7 +53,7 @@ const FormBox = () => {
     </DialogHeader>
 
     <Form {...form}>
-     <form className='space-y-6'>
+     <form className='space-y-6' onSubmit={form.handleSubmit(onSubmit)}>
       <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
        <FormField
         control={form.control}
@@ -95,11 +109,11 @@ const FormBox = () => {
           </Select>
          </FormItem>
         )}
-        />
+       />
 
        <FormField
         control={form.control}
-        name='title'
+        name='type'
         render={({ field }) => (
          <FormItem>
           <FormLabel>Job Type</FormLabel>
@@ -145,7 +159,7 @@ const FormBox = () => {
            <FormLabel>Salary Range</FormLabel>
            <FormControl>
             <Input
-             type="number"
+             type="text"
              placeholder='₹0'
              {...field}
             />
@@ -155,12 +169,12 @@ const FormBox = () => {
         />
         <FormField
          control={form.control}
-         name='salaryFrom'
+         name='salaryTo'
          render={({ field }) => (
           <FormItem>
            <FormControl>
             <Input
-             type="number"
+             type="text"
              placeholder='₹12,00,000'
              {...field}
             />
@@ -172,7 +186,7 @@ const FormBox = () => {
 
        <FormField
         control={form.control}
-        name='salaryTo'
+        name='applicationDeadline'
         render={({ field }) => (
          <FormItem>
           <FormLabel>Application Deadline</FormLabel>
@@ -208,8 +222,8 @@ const FormBox = () => {
        <Button type="button" variant="outline" className="px-8">
         Save Draft
        </Button>
-       <Button type="submit" className="bg-blue-500 text-white hover:bg-blue-600 px-8">
-        Publish
+       <Button disabled={pending} type="submit" className="bg-blue-500 text-white hover:bg-blue-600 px-8">
+        {pending ? "Creating" : "Publish"}
        </Button>
       </div>
      </form>

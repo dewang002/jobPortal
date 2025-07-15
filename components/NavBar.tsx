@@ -6,7 +6,6 @@ import {
  NavigationMenuItem,
  NavigationMenuLink,
 } from '@/components/ui/navigation-menu'
-import { Button } from '@/components/ui/button'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Slider } from '@/components/ui/slider'
@@ -77,7 +76,6 @@ const Navbar = () => {
    </div>
 
    <div className="w-full  mx-auto mt-4 bg-white  shadow-sm px-16 py-4 flex items-center justify-between gap-4">
-    {/* Search */}
     <div className="flex items-center gap-2 flex-1 max-w-[240px]">
      <Search className="h-4 w-4 text-muted-foreground" />
      <Input
@@ -86,10 +84,8 @@ const Navbar = () => {
      />
     </div>
 
-    {/* Divider */}
     <div className="w-px h-6 bg-gray-300" />
 
-    {/* Preferred Location */}
     <div className="flex items-center gap-2 ">
      <MapPin className="h-4 w-4 text-muted-foreground" />
      <Select>
@@ -104,10 +100,8 @@ const Navbar = () => {
      </Select>
     </div>
 
-    {/* Divider */}
     <div className="w-px h-6 bg-gray-300" />
 
-    {/* Job Type */}
     <div className="flex items-center gap-2 max-w-[200px]">
      <User className="h-4 w-4 text-muted-foreground" />
      <Select>
@@ -122,12 +116,10 @@ const Navbar = () => {
      </Select>
     </div>
 
-    {/* Divider */}
     <div className="w-px h-6 bg-gray-300" />
 
-    {/* Salary Slider */}
-    <div className="flex flex-col max-w-[200px] w-full">
-     <p className="text-sm text-muted-foreground mb-1">Salary Per Month</p>
+    <div className="flex flex-col max-w-[249px] w-full">
+     <p className="text-sm text-muted-foreground mb-1">Salary Per Month <span className='mx-4'>₹{salary[0]}k – ₹{salary[1]}k</span> </p>
      <Slider
       defaultValue={salary}
       onValueChange={setSalary}
@@ -135,9 +127,7 @@ const Navbar = () => {
       max={100}
       step={5}
      />
-     <p className="text-xs text-right text-muted-foreground mt-1">
-      ₹{salary[0]}k – ₹{salary[1]}k
-     </p>
+    
     </div>
    </div>
   </>

@@ -1,15 +1,18 @@
 import JobCard from '@/components/JobCard'
 import Navbar from '@/components/NavBar'
+import { prisma } from '@/lib/utils/client'
 import React from 'react'
 
-const page = () => {
+const page = async() => {
+  const data = await prisma.company.findMany()
   return (
     <>
       <Navbar />
       <div className='w-full h-full py-12 flex flex-wrap justify-center gap-[16px]'>
-        <JobCard logo={"/amz.svg"} jobTitle='Full Stack Developer' />
-        <JobCard logo={"/tesla.svg"} jobTitle='Node Js Developer' />
-        <JobCard logo={"/swigge.svg"} jobTitle='UX/UI Designer' />
+        {data.map(elem => {
+          return <JobCard key={elem.id} jobTitle={elem.title} />
+        })}
+       
       </div>
     </>
   )
