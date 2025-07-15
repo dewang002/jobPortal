@@ -4,6 +4,10 @@ import { prisma } from "@/lib/utils/client";
 import { companySchema } from "@/lib/utils/zodSchemas";
 import { redirect } from "next/navigation";
 import { z } from 'zod'
+import { revalidatePath } from 'next/cache'
+
+
+
 export async function createCompany(data: z.infer<typeof companySchema>) {
  const validateData = companySchema.parse(data);
  await prisma.company.create({
@@ -18,5 +22,6 @@ export async function createCompany(data: z.infer<typeof companySchema>) {
    applicationDeadline: validateData.applicationDeadline , 
   }
  })
+ revalidatePath('/');
  redirect('/')
 }

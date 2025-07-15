@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic'; 
+
 import JobCard from '@/components/JobCard'
 import Navbar from '@/components/NavBar'
 import { prisma } from '@/lib/utils/client'
