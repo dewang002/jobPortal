@@ -1,3 +1,5 @@
+"use client"
+
 import { Dialog, DialogTrigger, DialogContent } from '@/components/ui/dialog'
 import React, { useState } from 'react'
 import { Button } from './ui/button'
