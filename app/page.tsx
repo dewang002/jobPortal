@@ -12,7 +12,7 @@ const page = async() => {
       <Navbar />
       <div className='w-full h-full py-12 flex flex-wrap justify-center gap-[16px]'>
         {data.map(elem => {
-          return <JobCard key={elem.id} jobTitle={elem.title} />
+          return <JobCard key={elem.id} {...elem} />
         })}
        
       </div>

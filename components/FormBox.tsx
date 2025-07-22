@@ -13,6 +13,7 @@ import { Input } from './ui/input'
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from './ui/select'
 import { Textarea } from './ui/textarea'
 import { createCompany } from '@/app/actions/action'
+import { UploadDropzone } from './UploadThing'
 
 const FormBox = () => {
  const form = useForm<z.infer<typeof companySchema>>({
@@ -44,7 +45,7 @@ const FormBox = () => {
  return (
   <Dialog >
    <DialogTrigger asChild>
-    <Button className="bg-purple-600 text-white hover:bg-purple-700 rounded-full px-6">
+    <Button className="bg-gradient-to-b from-[#A128FF] to-[#6100AD] text-[16px] font-bold text-white hover:bg-purple-700 rounded-[30px] px-[24px] py-[8px]">
      Create Jobs
     </Button>
    </DialogTrigger>
@@ -215,6 +216,24 @@ const FormBox = () => {
            className="min-h-[120px]"
            {...field}
           />
+         </FormControl>
+        </FormItem>
+       )}
+      />
+
+      <FormField
+       control={form.control}
+       name='logo'
+       render={({ field }) => (
+        <FormItem>
+         <FormLabel>Job Description</FormLabel>
+         <FormControl>
+          <UploadDropzone endpoint={"imageUploader"} onClientUploadComplete={(res)=>{
+            field.onChange(res[0].ufsUrl);
+          }}
+          onUploadError={()=>{
+           console.log('something went wrong !!!')
+          }} />
          </FormControl>
         </FormItem>
        )}

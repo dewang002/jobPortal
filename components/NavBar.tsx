@@ -20,17 +20,15 @@ const Navbar = () => {
  return (
   <>
    <div className="w-[890px] h-[80px] shadow-sm bg-white p-[16px] flex justify-between items-center rounded-full mx-auto mt-4">
-    {/* Logo */}
     <div className="flex items-center gap-2">
      <Image src="/cmwlogo.jpg" alt="Logo" width={40} height={40} className="rounded-full" />
     </div>
 
-    {/* Navigation */}
     <NavigationMenu>
-     <NavigationMenuList className="flex gap-6">
+     <NavigationMenuList className="flex gap-6 font-bold text-[16px]">
       <NavigationMenuItem>
        <Link href="/" passHref>
-        <NavigationMenuLink className="text-sm font-medium text-black hover:text-purple-600 transition-colors">
+        <NavigationMenuLink className="text-black text-[16px] hover:text-purple-600 transition-colors">
          Home
         </NavigationMenuLink>
        </Link>
@@ -38,7 +36,7 @@ const Navbar = () => {
 
       <NavigationMenuItem>
        <Link href="/find-jobs" passHref>
-        <NavigationMenuLink className="text-sm font-medium text-black hover:text-purple-600 transition-colors">
+        <NavigationMenuLink className="text-black text-[16px] hover:text-purple-600 transition-colors">
          Find Jobs
         </NavigationMenuLink>
        </Link>
@@ -46,7 +44,7 @@ const Navbar = () => {
 
       <NavigationMenuItem>
        <Link href="/find-talents" passHref>
-        <NavigationMenuLink className="text-sm font-medium text-black hover:text-purple-600 transition-colors">
+        <NavigationMenuLink className="text-black text-[16px] hover:text-purple-600 transition-colors">
          Find Talents
         </NavigationMenuLink>
        </Link>
@@ -54,7 +52,7 @@ const Navbar = () => {
 
       <NavigationMenuItem>
        <Link href="/about-us" passHref>
-        <NavigationMenuLink className="text-sm font-medium text-black hover:text-purple-600 transition-colors">
+        <NavigationMenuLink className="text-black text-[16px] hover:text-purple-600 transition-colors">
          About us
         </NavigationMenuLink>
        </Link>
@@ -62,7 +60,7 @@ const Navbar = () => {
 
       <NavigationMenuItem>
        <Link href="/testimonials" passHref>
-        <NavigationMenuLink className="text-sm font-medium text-black hover:text-purple-600 transition-colors">
+        <NavigationMenuLink className="text-black  text-[16px] hover:text-purple-600 transition-colors">
          Testimonials
         </NavigationMenuLink>
        </Link>
@@ -77,19 +75,19 @@ const Navbar = () => {
 
    <div className="w-full  mx-auto mt-4 bg-white  shadow-sm px-16 py-4 flex items-center justify-between gap-4">
     <div className="flex items-center gap-2 flex-1 max-w-[240px]">
-     <Search className="h-4 w-4 text-muted-foreground" />
+     <Search className="h-[18px] w-[18px] text-muted-foreground" />
      <Input
       placeholder="Search By Job Title, Role"
-      className="border-none focus-visible:ring-0 focus-visible:ring-offset-0 placeholder:text-sm"
+      className="border-none focus-visible:ring-0 focus-visible:ring-offset-0 placeholder:text-[16px] font-medium"
      />
     </div>
 
     <div className="w-px h-6 bg-gray-300" />
 
     <div className="flex items-center gap-2 ">
-     <MapPin className="h-4 w-4 text-muted-foreground" />
+     <Image src='/locationLogo.svg' height='21' width='16' alt='location' />
      <Select>
-      <SelectTrigger className="w-[180px] border-0">
+      <SelectTrigger className="w-[190px] border-0 text-[16px] font-medium">
        <SelectValue placeholder="Preferred Location" />
       </SelectTrigger>
       <SelectContent>
@@ -103,9 +101,9 @@ const Navbar = () => {
     <div className="w-px h-6 bg-gray-300" />
 
     <div className="flex items-center gap-2 max-w-[200px]">
-     <User className="h-4 w-4 text-muted-foreground" />
+     <Image src={'/personLogo.svg'} height='21' width='21' alt='person' />
      <Select>
-      <SelectTrigger className="border-none focus:ring-0 focus:ring-offset-0 px-0 text-sm">
+      <SelectTrigger className="border-none focus:ring-0 focus:ring-offset-0 px-0 text-[16px] font-medium">
        <SelectValue placeholder="Job Type" />
       </SelectTrigger>
       <SelectContent>
@@ -118,8 +116,8 @@ const Navbar = () => {
 
     <div className="w-px h-6 bg-gray-300" />
 
-    <div className="flex flex-col max-w-[249px] w-full">
-     <p className="text-sm text-muted-foreground mb-1">Salary Per Month <span className='mx-4'>₹{salary[0]}k – ₹{salary[1]}k</span> </p>
+    <div className="flex flex-col max-w-[300px] w-full">
+     <p className="text-[16px] font-bold mb-1">Salary Per Month <span className='mx-4'>₹{salary[0]}k – ₹{salary[1]}k</span> </p>
      <Slider
       defaultValue={salary}
       onValueChange={setSalary}
@@ -127,7 +125,7 @@ const Navbar = () => {
       max={100}
       step={5}
      />
-    
+
     </div>
    </div>
   </>

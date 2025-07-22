@@ -1,6 +1,12 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+@import "tailwindcss";
+
+@import "uploadthing/tw/v4";
+@source "../node_modules/@uploadthing/react/dist"; /** <-- depends on your project structure */
+
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
@@ -43,7 +49,15 @@
   --radius-xl: calc(var(--radius) + 4px);
 }
 
+@font-face {
+  font-family: 'Satoshi';
+  src: url('/fonts/Satoshi-Variable.woff2') format('ttf');
+  font-weight: 100 900;
+  font-display: swap;
+}
+
 :root {
+  --font-satoshi: 'Satoshi', sans-serif;
   --radius: 0.625rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
