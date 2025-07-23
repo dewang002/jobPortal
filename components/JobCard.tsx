@@ -15,6 +15,7 @@ type jobCardProp = {
  about: string;
  salaryFrom: string;
  salaryTo: string;
+ logo:string;
 }
 
 const getTimeAgo = (postedDate: string) => {
@@ -37,6 +38,7 @@ const JobCard = ({
  type,
  about,
  salaryTo,
+ logo
 }: jobCardProp) => {
 
  const pastTime = new Date()
@@ -47,7 +49,7 @@ const JobCard = ({
     {/* Logo */}
     <div className='p-2 shadow-2xs bg-zinc-100 rounded-md'>
      <Image
-      src={'/tesla.svg'} 
+      src={logo} 
       alt='company logo'
       width={66}
       height={66}
@@ -73,7 +75,7 @@ const JobCard = ({
      </div>
      <div className="flex items-center gap-1">
       <Layers className="h-4 w-4" />
-      {((parseInt(salaryTo) * 12) / 100000).toFixed(1).replace(/\.0$/, '')} LPA
+      {((parseInt(salaryTo) * 12) / 100000).toFixed(1)} LPA
      </div>
     </div>
 
