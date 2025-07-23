@@ -12,6 +12,7 @@ export async function createCompany(data: z.infer<typeof companySchema>) {
  await prisma.company.create({
   data: {
    title: validateData.title,
+   logo:validateData.logo,
    name: validateData.name,
    type: validateData.type,
    location: validateData.location,
